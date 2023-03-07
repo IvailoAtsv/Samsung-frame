@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>S23U Frame</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <!-- phone frame -->
+    <div class="phone">
+      <!--phone notch -->
+      <div class="notch"></div>
+      <!-- phone screen -->
+      <div class="screen">
+        <div id="time"></div>
+        <div><img src="battery.png" alt="battery" class="battery" /></div>
+
+        <!--content -->
+        <div id="close">
+          <div class="calculator-grid">
+            <div class="output">
+              <div class="previous-operand previous"></div>
+              <div class="current-operand current">0</div>
+            </div>
+            <button class="span-two operation clear AC">AC</button>
+            <button class="delete grey">DEL</button>
+            <button class="operation org">/</button>
+            <button class="number">1</button>
+            <button class="number">2</button>
+            <button class="number">3</button>
+            <button class="operation org">*</button>
+            <button class="number">4</button>
+            <button class="number">5</button>
+            <button class="number">6</button>
+            <button class="operation org">+</button>
+            <button class="number">7</button>
+            <button class="number">8</button>
+            <button class="number">9</button>
+            <button class="operation org">-</button>
+            <button class="number span-two">0</button>
+            <button class="number decimal">.</button>
+            <button class="equals org">=</button>
+          </div>
+        </div>
+        <div id="nav-bar">
+          <button id="menu">&#x2630;</button>
+          <button id="home">&#x26AC;</button>
+          <button id="back">&#x276E;</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="calculator.js"></script>
+    <script src="homescreen.js"></script>
+  </body>
+</html>

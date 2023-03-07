@@ -1,0 +1,450 @@
+		/* Style the phone frame */
+		.phone {
+			aspect-ratio: auto;
+			width: 23rem;
+			height: 50rem;
+			background-color: #000;
+			border-radius: 25px;
+			overflow: hidden;
+			position: absolute;
+			left: 40%;
+			margin: 50px auto;
+			box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+
+		}
+
+		/* Style of the phone screen */
+		.screen {
+			background-color: #222121;
+			display: flex;
+			justify-content: space-around;
+			flex-direction: row;
+			width: 21.5rem;
+			height: 48.5rem;
+			position: absolute;
+			top: 10px;
+			left: 12.5px;
+			border-radius: 15px;
+			border: none;
+			/* overflow: hidden; */
+			padding: 20px;
+			box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+
+		}
+
+
+
+
+		/* phone notch */
+		.notch {
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			top: 17px;
+			left: 48%;
+			background-color: #000;
+			border-radius: 15px;
+			z-index: 10;
+
+		}
+
+		#nav-bar {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			padding-left: 20px;
+			padding-right: 20px;
+			vertical-align: bottom;
+			gap: 70px;
+
+		}
+
+		#nav-bar>button {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			transition: all .2s ease-in-out;
+			border: none;
+
+			background-color: rgba(0, 0, 0, 0);
+			color: rgba(255, 255, 255, 0.3);
+
+			width: 2.5rem;
+			height: 2.5rem;
+			border-radius: 15px;
+			margin-top: 44.4rem;
+
+		}
+
+		#nav-bar>button:hover {
+			background-color: rgba(255, 254, 254, 0.5);
+			 transform: scale(1.2);
+		}
+
+		#home {
+			font-size: 4.5rem;
+			padding-bottom: 18px;
+
+		}
+		.hide{
+			transition: all .2s ease-in-out;
+			transform: scale(0.1) ;
+		}
+		.open{
+			transition: all .2s ease-in-out;
+			transform: scale(5) ;
+			background-color: #222121;
+		}
+		#back {
+			font-size: 2rem;
+			padding-bottom: 2px;
+		}
+
+		#menu {
+			font-size: 2rem;
+			padding-bottom: 3px;
+		}
+
+		.image {
+			max-width: 100%;
+			max-height: 100%;
+			align-items: center;
+			background-size: contain;
+		}
+		#time{
+			position: absolute;
+			width: 10.2rem;
+			height: 2.2rem;
+			background-size: contain;
+			left: 5%;
+			color: white;
+			font-family:Verdana, Geneva, Tahoma, sans-serif;
+			font-size: 0.8rem;
+			bottom: 94.5%;
+			
+		}
+		.battery{
+			position: absolute;
+			width: 15.2rem;
+			height: 2rem;
+			background-size: contain;
+			right: 0%;
+			bottom: 95.5%;
+		}
+
+		.icon-text {
+			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+			font-size: 2rem;
+		}
+
+		.app-drawer {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-evenly;
+			gap: 25px;
+			margin-left: 5px;
+			;
+			margin-right: 5px;
+			top: 80%;
+			justify-items: center;
+			position: absolute;
+			color: white;
+		}
+
+		.app-drawer>button {
+
+			transition: all .2s ease-in-out;
+			align-items: center;
+			border: none;
+			/* background-color: rgba(0, 0, 0, 1); */
+
+
+			padding-left: 10px;
+			padding-right: 10px;
+			width: 3.7rem;
+			height: 3.7rem;
+			border-radius: 22px;
+		}
+		.app-drawer>button:hover{
+			transform: scale(1.1);
+		}
+
+		/* contacts */
+		#close{
+			height: 100%;
+			width: 100%;
+		}
+		#phonebook{
+			height: 90%;
+			right: 10px;
+			width: 95%;
+			position: absolute;
+		}
+		#phoneTitle{
+			position: absolute;
+			text-align: center;
+			left: 36.5%;
+			top: 5%;
+			color:rgb(197, 199, 255);
+		}
+		#underTitle{
+			position: absolute;
+			align-items: center;
+			text-align: center;
+			top: 10%;
+			color:rgb(197, 199, 255);
+			padding-left: 20px;
+			padding-top: 10px;
+		}
+		#contacts-main{
+			height: 80%;
+			width: 100%;
+			position: absolute;
+			align-items: center;
+			top: 20%;
+			padding: 10px;
+		}
+		#contact-section{
+			margin-top: 10rem;
+			display: grid;
+			grid-template-columns: repeat(3 10px);
+			align-items: center;
+		}
+		.separate-contact{
+			width: 100%;
+		}
+		.no-bullet{
+			list-style-type: none;
+		}
+		.box{
+			width: 94%;
+			position: absolute;
+			right: 5%;
+			height: 1.5rem;
+			text-align: center;
+			border: none;
+			background-color: rgb(120, 120, 120);
+			border-radius: 10px;
+		}
+		.first-letter{
+			padding-left: 10px;
+			color:rgb(197, 199, 255);
+		}
+
+
+		/* calculator css */
+
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+			font-family: Arial, Helvetica, sans-serif;
+			font-weight: strong;
+		}
+
+		body {
+			padding: 1rem;
+			margin: 3rem;
+			background: grey
+		}
+
+		.calculator-grid {
+
+			position: absolute;
+			bottom: 40px;
+			margin-top: 10rem;
+			margin-bottom: 10px;
+			display: grid;
+			justify-content: center;
+			align-content: top;
+			right: 0.5rem;
+			min-height: 25vh;
+			min-width: 10vw;
+			grid-template-columns: repeat(4, 83px);
+			grid-template-rows: minmax(120px, auto) repeat(5, 83px)
+		}
+
+		.calculator-grid>button {
+			color: rgb(197, 199, 255);
+			margin: 0.25rem;
+			border-radius: 60px;
+			cursor: pointer;
+			font-size: 2rem;
+			border: none;
+			outline: none;
+			background-color: rgba(75, 75, 75, 0.75)
+		}
+
+
+		.calculator-grid>button:hover {
+			background-color: rgba(255, 255, 255, .5)
+		}
+
+		.span-two {
+			grid-column: span 2;
+		}
+
+		.output {
+			grid-column: 1/-1;
+			background-color: #222121;
+			display: flex;
+			align-items: flex-end;
+			justify-content: center;
+			flex-direction: column;
+			padding: 10px;
+			word-wrap: break-word;
+			word-break: break-all;
+
+		}
+
+		.output .previous-operand {
+			color: rgb(197, 199, 255, 0.69);
+			font-size: 50px;
+		}
+
+		.output .current-operand {
+			color: rgb(197, 199, 255);
+			font-size: 50px;
+		}
+
+		.calculator-grid .clear {
+			color: rgb(255, 0, 144);
+		}
+
+
+
+		/* clock appearance */
+
+		.main-clock {
+			display: flex;
+			flex-direction: row;
+			position: absolute;
+			justify-content: space-evenly;
+			align-items: center;
+			height: 80%;
+			width: 100%;
+		}
+
+		.labels-div {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-evenly;
+			padding-left: 45px;
+			width: 100%;
+			position: absolute;
+			top: 20%;
+			color: rgb(197, 199, 255);
+		}
+
+		.labels-div>label {
+			width: 40%;
+
+			font-size: 15px;
+
+
+		}
+
+		.inputs-div {
+			position: inherit;
+			top: 30%;
+			display: flex;
+			flex-direction: row;
+			gap: 20px;
+			justify-content: space-evenly;
+			flex-basis: auto;
+
+			padding-left: 1rem;
+		}
+
+		.inputs-div>input {
+			width: 20%;
+			background-color: rgba(0, 0, 0, 0);
+			color: rgb(197, 199, 255);
+			border: none;
+			font-size: 3rem;
+			font-weight: bold;
+		}
+
+		#start-div {
+			top: 85%;
+			width: 100%;
+			position: absolute;
+			display: flex;
+			justify-content: space-evenly;
+			top: 80%;
+		}
+
+		#start-div>button {
+
+
+			width: 6rem;
+			height: 2rem;
+			border-radius: 20px;
+			border: none;
+
+			background-color: rgb(197, 199, 255);
+			font-size: 20px;
+			font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+			;
+
+		}
+
+		#timer-text {
+			padding-top: 10rem;
+			font-size: 30px;
+			font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+			;
+			color: rgb(197, 199, 255);
+		}
+
+		/* cv styling */
+
+		.cv-div {
+			display: flex;
+			flex-direction: row;
+			position: absolute;
+			justify-content: flex-start;
+			/* align-items: center; */
+			height: 83%;
+			bottom: 15%;
+			left: 2%;
+			width: 100%;
+
+			text-align: center;
+
+		}
+
+		.cv-div>p {
+			height: 85%;
+			width: 95%;
+			top: 20%;
+
+			position: absolute;
+			display: flex;
+			overflow: scroll;
+			overflow-x: hidden;
+			flex-wrap: wrap;
+			text-align: left;
+			color: white;
+		}
+
+		.cv-div>h1 {
+			color: white;
+
+		}
+
+		.cv-div>h2 {
+			position: absolute;
+			top: 13%;
+			width: 94%;
+			font-size: 1.2rem;
+			color: white;
+
+		}
+
+		::-webkit-scrollbar {
+			display: none;
+		}
+
+	
