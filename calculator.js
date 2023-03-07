@@ -119,8 +119,3 @@ deleteBtn.addEventListener('click', () => {
     calculator.refreshDisplay()
 })
 
-// const hide = document.querySelector('#hide')
-// const line = document.getElementById('line')
-// line.addEventListener('click', () => {
-// hide.style.display = 'none'
-// })

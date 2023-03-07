@@ -212,7 +212,7 @@ function openCv() {
   name.textContent = `Ivaylo Krystev Atanasov`;
   cvDiv.appendChild(name);
   const info = document.createElement("h2");
-  info.textContent = `Sliven,Bulgaria |+359879850066| \nivailoatanassovv@gmail.com`;
+  info.textContent = `Sliven,Bulgaria |+xxx xxx xx66| \...ovv@gmail.com`;
   cvDiv.appendChild(info);
   const p = document.createElement("p");
   cvDiv.appendChild(p);
