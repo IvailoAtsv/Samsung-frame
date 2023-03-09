@@ -18,32 +18,52 @@ time.innerHTML = result;
 backBtn.addEventListener("click", home);
 homeBtn.addEventListener("click", home);
 const closed = document.getElementById("close");
+const calcGrid = document.querySelector('.calculator-grid')
 const screen = document.querySelector(".screen");
 let atHome = false;
 let mainDiv;
 let mainDivClock;
 let cvDiv;
-let wasCreated;
+let wasCreated = false;
 function home(event) {
+
   if (!atHome) {
+
     if (!wasCreated) {
       createHomeScreen();
     } else {
       openHomeScreen();
     }
     if (screen.contains(mainDivClock)) {
-      screen.removeChild(mainDivClock);
+      setTimeout(() => screen.removeChild(mainDivClock), 302);
+      mainDivClock.classList.add("animate");
+      setTimeout(() => {
+        mainDivClock.classList.remove("animate");
+      }, 301);
     }
     if (screen.contains(cvDiv)) {
-      screen.removeChild(cvDiv);
+      setTimeout(() => screen.removeChild(cvDiv), 303);
+      cvDiv.classList.add("animate");
+      setTimeout(() => {
+        cvDiv.classList.remove("animate");
+      }, 304);
     }
     atHome = true;
   }
 }
 function createHomeScreen() {
-  if (screen.contains(closed)) screen.removeChild(closed);
+
+  if (screen.contains(closed)) {
+
+    setTimeout(() => screen.removeChild(closed), 312);
+    closed.classList.add("animate");
+    setTimeout(() => {
+      closed.classList.remove("animate");
+    }, 301);
+  }
 
   screen.style.backgroundImage = "url(static/homeScreen.jpg)";
+
   screen.classList.add("image");
   mainDiv = createElement("div", "", screen, { class: "app-drawer" });
   const app1 = createElement("button", "", mainDiv, {
@@ -65,16 +85,32 @@ function createHomeScreen() {
   wasCreated = true;
 }
 function openHomeScreen() {
-  screen.appendChild(mainDiv);
+  if(!screen.contains(mainDiv)){
+    screen.appendChild(mainDiv);
+  }
   screen.style.backgroundImage = "url('static/homeScreen.jpg')";
   screen.classList.add("image");
-  if (screen.contains(closed)) screen.removeChild(closed);
+  if (screen.contains(closed)) {
+
+    setTimeout(() => screen.removeChild(closed), 302);
+    calcGrid.classList.add("animate");
+    setTimeout(() => {
+      calcGrid.classList.remove("animate");
+    }, 304);
+  }
 }
-window.onload = createHomeScreen();
 
 function openCalculator() {
-  screen.appendChild(closed);
-  screen.style.backgroundImage = "none";
+  // setTimeout(() => {
+    screen.appendChild(closed);
+  // }, 310); 
+  closed.classList.add('openCalc')
+  setTimeout(() => {
+    closed.classList.remove('openCalc')
+  }, 320);
+  setTimeout(() => {
+    screen.style.backgroundImage = "none";
+  }, 200); 
 
   screen.removeChild(mainDiv);
   atHome = false;
@@ -82,12 +118,14 @@ function openCalculator() {
 }
 function openClock() {
   last = "clock";
-  screen.style.backgroundImage = "none";
   if (screen.contains(mainDiv)) {
     screen.removeChild(mainDiv);
   }
 
-  mainDivClock = createElement("div", "", screen, { class: "main-clock" });
+  mainDivClock = createElement("div", "", '', {
+    class: "main-clock",
+    style: "background-color:#222121",
+  });
 
   // labels
   const labelsDiv = createElement("div", "", mainDivClock, {
@@ -133,8 +171,21 @@ function openClock() {
     id: "timer-text",
   });
 
+  screen.appendChild(mainDivClock)
+  setTimeout(() => {
+    screen.style.backgroundImage = "none";
+
+  }, 320);
+  mainDivClock.classList.add('openClock')
+  setTimeout(() => {
+  mainDivClock.classList.remove('openClock')
+
+    
+  }, 310);
+
   let interval = null;
   let wasReset = false;
+
   function reset() {
     clearInterval(interval);
     inputHrs.value = "";
@@ -198,11 +249,14 @@ function openClock() {
 window.onload = home();
 function openCv() {
   atHome = false;
-  screen.style.backgroundImage = "none";
+
   if (screen.contains(mainDiv)) screen.removeChild(mainDiv);
   last = "cv";
 
-  cvDiv = createElement("div", "", screen, { class: "cv-div" });
+  cvDiv = createElement("div", "", '', {
+    class: "cv-div",
+    style: "background-color:#222121",
+  });
 
   const name = createElement("h1", `Ivaylo Krystev Atanasov`, cvDiv, {});
 
@@ -251,5 +305,16 @@ function openCv() {
     <li>I like to reverse engineer interactive single-page applications</li>
     <li>I'm keen on weight-lifting and mountain hiking</li>
     </ul>`;
-}
 
+    screen.appendChild(cvDiv)
+    setTimeout(() => {
+      screen.style.backgroundImage = "none";
+  
+    }, 320);
+    cvDiv.classList.add('openClock')
+    setTimeout(() => {
+    cvDiv.classList.remove('openClock')
+  
+      
+    }, 310);
+}
