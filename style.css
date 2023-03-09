@@ -126,8 +126,8 @@
 		}
 		.battery{
 			position: absolute;
-			width: 15.2rem;
-			height: 2rem;
+			width: 15rem;
+			height: 1.9rem;
 			background-size: contain;
 			right: 0%;
 			bottom: 95.5%;

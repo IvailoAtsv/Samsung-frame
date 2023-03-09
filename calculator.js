@@ -1,3 +1,4 @@
+
 class Calculator {
     constructor(previous, current) {
         this.previous = previous

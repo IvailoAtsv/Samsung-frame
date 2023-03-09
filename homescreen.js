@@ -1,10 +1,11 @@
+import { createElement } from "./utils.js";
 const nicePurple = 'style="color:rgb(197, 199, 255)"';
 const lightPurple = 'style="color:rgb(204, 204, 255)"';
 const homeBtn = document.getElementById("home");
 const backBtn = document.getElementById("back");
 const time = document.getElementById("time");
 const menu = document.getElementById("menu");
-menu.addEventListener("click", openLast);
+// menu.addEventListener("click", openLast);
 
 let result;
 if (new Date().getMinutes() < 10) {
@@ -16,125 +17,122 @@ let last;
 time.innerHTML = result;
 backBtn.addEventListener("click", home);
 homeBtn.addEventListener("click", home);
-const close = document.getElementById("close");
+const closed = document.getElementById("close");
 const screen = document.querySelector(".screen");
 let atHome = false;
 let mainDiv;
 let mainDivClock;
 let cvDiv;
+let wasCreated;
 function home(event) {
   if (!atHome) {
-    createHomeScreen();
-    if (mainDivClock) {
-      mainDivClock.style.display = "none";
+    if (!wasCreated) {
+      createHomeScreen();
+    } else {
+      openHomeScreen();
     }
-    if (cvDiv) {
-      cvDiv.style.display = "none";
+    if (screen.contains(mainDivClock)) {
+      screen.removeChild(mainDivClock);
     }
-
+    if (screen.contains(cvDiv)) {
+      screen.removeChild(cvDiv);
+    }
     atHome = true;
   }
 }
-const app1 = document.createElement("button");
-const app2 = document.createElement("button");
-const app3 = document.createElement("button");
-
 function createHomeScreen() {
-  close.style.display = "none";
-  screen.style.backgroundImage = "url('home-screen2.jpg')";
+  if (screen.contains(closed)) screen.removeChild(closed);
+
+  screen.style.backgroundImage = "url(static/homeScreen.jpg)";
   screen.classList.add("image");
-  mainDiv = document.createElement("div");
-  mainDiv.classList.add("app-drawer");
-  app1.style.backgroundImage = "url('clock.png')";
-  app1.classList.add("image");
-  app1.setAttribute("id", "clockHomeScreen");
+  mainDiv = createElement("div", "", screen, { class: "app-drawer" });
+  const app1 = createElement("button", "", mainDiv, {
+    style: "background-image: url('static/clock.png')",
+    class: "image",
+  });
   app1.addEventListener("click", openClock);
-  mainDiv.appendChild(app1);
-  app2.style.backgroundImage = "url('calc.png')";
-  app2.classList.add("image");
-  app2.setAttribute("id", "calcHomeScreen");
+  const app2 = createElement("button", "", mainDiv, {
+    style: "background-image : url('static/calc.png')",
+    class: "image",
+  });
   app2.addEventListener("click", openCalculator);
-  // app2.addEventListener('click')
-  mainDiv.appendChild(app2);
-  app3.style.backgroundImage = "url('cv.jpg')";
-  app3.classList.add("image");
+
+  const app3 = createElement("button", "", mainDiv, {
+    style: "background-image :url('static/cv.jpg')",
+    class: "image",
+  });
   app3.addEventListener("click", openCv);
-  mainDiv.appendChild(app3);
-
-  screen.appendChild(mainDiv);
-
+  wasCreated = true;
 }
-function openHomeScreen(){}
-window.onload = createHomeScreen()
+function openHomeScreen() {
+  screen.appendChild(mainDiv);
+  screen.style.backgroundImage = "url('static/homeScreen.jpg')";
+  screen.classList.add("image");
+  if (screen.contains(closed)) screen.removeChild(closed);
+}
+window.onload = createHomeScreen();
+
 function openCalculator() {
-  close.style.display = "block";
+  screen.appendChild(closed);
   screen.style.backgroundImage = "none";
-  mainDiv.style.display = "none";
+
+  screen.removeChild(mainDiv);
   atHome = false;
   last = "calc";
 }
 function openClock() {
-  // app1.classList.add('open')
   last = "clock";
   screen.style.backgroundImage = "none";
-  mainDiv.style.display = "none";
+  if (screen.contains(mainDiv)) {
+    screen.removeChild(mainDiv);
+  }
 
-  mainDivClock = document.createElement("div");
-  mainDivClock.classList.add("main-clock");
+  mainDivClock = createElement("div", "", screen, { class: "main-clock" });
 
-  const labelsDiv = document.createElement("div");
-  labelsDiv.classList.add("labels-div");
-  const labelhrs = document.createElement("label");
-  labelhrs.textContent = "Hours";
-  const labelMins = document.createElement("label");
-  labelMins.textContent = "Minutes";
-  const labelSecs = document.createElement("label");
-  labelSecs.textContent = "Seconds";
+  // labels
+  const labelsDiv = createElement("div", "", mainDivClock, {
+    class: "labels-div",
+  });
 
-  labelsDiv.appendChild(labelhrs);
-  labelsDiv.appendChild(labelMins);
-  labelsDiv.appendChild(labelSecs);
+  const labelhrs = createElement("label", "Hours", labelsDiv, {});
 
-  const inputsDiv = document.createElement("div");
-  inputsDiv.classList.add("inputs-div");
-  const inputHrs = document.createElement("input");
-  inputHrs.setAttribute("type", "text");
-  inputHrs.setAttribute("placeholder", "00");
-  inputHrs.placeholder = "0";
+  const labelMins = createElement("label", "Minutes", labelsDiv, {});
 
-  const inputMins = document.createElement("input");
-  inputMins.setAttribute("type", "text");
-  inputMins.setAttribute("placeholder", "00");
-  inputMins.placeholder = "0";
+  const labelSecs = createElement("label", "Seconds", labelsDiv, {});
 
-  const inputSecs = document.createElement("input");
-  inputSecs.setAttribute("type", "text");
-  inputSecs.placeholder = "0";
+  const inputsDiv = createElement("div", "", mainDivClock, {
+    class: "inputs-div",
+  });
 
-  inputsDiv.appendChild(inputHrs);
-  inputsDiv.appendChild(inputMins);
-  inputsDiv.appendChild(inputSecs);
+  const inputHrs = createElement("input", "", inputsDiv, {
+    type: "text",
+    placeholder: "0",
+  });
 
-  mainDivClock.appendChild(labelsDiv);
-  mainDivClock.appendChild(inputsDiv);
+  const inputMins = createElement("input", "", inputsDiv, {
+    type: "text",
+    placeholder: "0",
+  });
 
-  const startResetDiv = document.createElement("div");
+  const inputSecs = createElement("input", "", inputsDiv, {
+    type: "text",
+    placeholder: "0",
+  });
+
+  const startResetDiv = createElement("div", "", mainDivClock, {
+    id: "start-div",
+  });
   let err = false;
-  const resetBtn = document.createElement("button");
-  resetBtn.textContent = `Reset`;
+  const resetBtn = createElement("button", "Reset", startResetDiv, {});
   resetBtn.addEventListener("click", reset);
-  startResetDiv.appendChild(resetBtn);
 
-  const startBtn = document.createElement("button");
-  startBtn.textContent = `Start`;
-  startResetDiv.setAttribute("id", "start-div");
+  const startBtn = createElement("button", "Start", startResetDiv, {});
   startBtn.addEventListener("click", clock);
-  startResetDiv.appendChild(startBtn);
-  mainDivClock.appendChild(startResetDiv);
 
-  const timerText = document.createElement("div");
-  timerText.setAttribute("id", "timer-text");
-  mainDivClock.appendChild(timerText);
+  const timerText = createElement("div", "", mainDivClock, {
+    id: "timer-text",
+  });
+
   let interval = null;
   let wasReset = false;
   function reset() {
@@ -182,7 +180,7 @@ function openClock() {
         // timer.textContent = `${displayHours}: ${displayMinutes}: ${displaySeconds}`
         inputHrs.value = displayHours;
         inputMins.value = displayMinutes;
-        inputMins.value = displaySeconds;
+        inputSecs.value = displaySeconds;
       } else {
         if (!wasReset && !err) {
           timerText.textContent = `Finished`;
@@ -195,25 +193,26 @@ function openClock() {
       }
     }
   }
-
-  screen.appendChild(mainDivClock);
   atHome = false;
 }
 window.onload = home();
 function openCv() {
   atHome = false;
   screen.style.backgroundImage = "none";
-  mainDiv.style.display = "none";
+  if (screen.contains(mainDiv)) screen.removeChild(mainDiv);
   last = "cv";
 
-  cvDiv = document.createElement("div");
-  cvDiv.classList.add("cv-div");
-  const name = document.createElement("h1");
-  name.textContent = `Ivaylo Krystev Atanasov`;
-  cvDiv.appendChild(name);
-  const info = document.createElement("h2");
-  info.textContent = `Sliven,Bulgaria |+xxx xxx xx66| \...ovv@gmail.com`;
-  cvDiv.appendChild(info);
+  cvDiv = createElement("div", "", screen, { class: "cv-div" });
+
+  const name = createElement("h1", `Ivaylo Krystev Atanasov`, cvDiv, {});
+
+  const info = createElement(
+    "h2",
+    `Sliven,Bulgaria |+xxx xxx xx66| \...ovv@gmail.com`,
+    cvDiv,
+    {}
+  );
+
   const p = document.createElement("p");
   cvDiv.appendChild(p);
   p.innerHTML = `
@@ -252,18 +251,5 @@ function openCv() {
     <li>I like to reverse engineer interactive single-page applications</li>
     <li>I'm keen on weight-lifting and mountain hiking</li>
     </ul>`;
+}
 
-  screen.appendChild(cvDiv);
-}
-function openLast() {
-  if (last == "calc") {
-    homeBtn.click();
-    app2.click();
-  } else if (last == "clock") {
-    homeBtn.click();
-    app1.click();
-  } else if (last == "cv") {
-    homeBtn.click();
-    app3.click();
-  }
-}
